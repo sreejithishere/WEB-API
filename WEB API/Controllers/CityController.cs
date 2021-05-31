@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WEB_API.Context;
 using WEB_API.Models;
+using WEB_API.Repos;
 
 namespace WEB_API.Controllers
 {
@@ -14,16 +9,16 @@ namespace WEB_API.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly DataContext _dataContext;
-        public CityController(DataContext dc)
+        private readonly ICityRepository _cityRepository;
+        public CityController(ICityRepository cr)
         {
-            _dataContext = dc;
+            _cityRepository = cr;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var cities = await _dataContext.Cities.ToListAsync();
+            var cities = await _cityRepository.GetCitiesAsync();
             return Ok(cities);
         }
 
@@ -40,17 +35,16 @@ namespace WEB_API.Controllers
         [HttpPost("addCity")]
         public async Task<IActionResult> AddCities(City city)
         {
-            await _dataContext.AddAsync(city);
-            await _dataContext.SaveChangesAsync();
-            return Ok(city);
+            await _cityRepository.AddCityAsync(city);
+            await _cityRepository.SaveAsync();
+            return Ok();
         }
 
         [HttpDelete("deleteCity/{id}")]
         public async Task<IActionResult> DeleteCity(int id)
         {
-            var city = await _dataContext.Cities.FindAsync(id);
-            _dataContext.Remove(city);
-            await _dataContext.SaveChangesAsync();
+            await _cityRepository.DeleteCityAsync(id);
+            await _cityRepository.SaveAsync();
             return Ok(id);
         }
     }
