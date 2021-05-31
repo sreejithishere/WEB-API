@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WEB_API.Models;
-using WEB_API.Repos;
+using WEB_API.Interface;
 
 namespace WEB_API.Controllers
 {

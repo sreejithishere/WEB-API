@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WEB_API.Models;
 
-namespace WEB_API.Repos
+namespace WEB_API.Interface
 {
     public interface ICityRepository
     {

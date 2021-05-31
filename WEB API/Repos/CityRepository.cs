@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WEB_API.Context;
 using WEB_API.Models;
 
-namespace WEB_API.Repos
+namespace WEB_API.Interface
 {
     public class CityRepository:ICityRepository
     {
