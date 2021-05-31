@@ -9,16 +9,16 @@ namespace WEB_API.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly ICityRepository _cityRepository;
-        public CityController(ICityRepository cr)
+        private readonly IUnitOfWork _uow;
+        public CityController(IUnitOfWork uow)
         {
-            _cityRepository = cr;
+            _uow = uow;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var cities = await _cityRepository.GetCitiesAsync();
+            var cities = await _uow.cityRepository.GetCitiesAsync();
             return Ok(cities);
         }
 
@@ -35,16 +35,16 @@ namespace WEB_API.Controllers
         [HttpPost("addCity")]
         public async Task<IActionResult> AddCities(City city)
         {
-            await _cityRepository.AddCityAsync(city);
-            await _cityRepository.SaveAsync();
+            await _uow.cityRepository.AddCityAsync(city);
+            await _uow.SaveAsync();
             return Ok();
         }
 
         [HttpDelete("deleteCity/{id}")]
         public async Task<IActionResult> DeleteCity(int id)
         {
-            await _cityRepository.DeleteCityAsync(id);
-            await _cityRepository.SaveAsync();
+            await _uow.cityRepository.DeleteCityAsync(id);
+            await _uow.SaveAsync();
             return Ok(id);
         }
     }
