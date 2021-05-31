@@ -31,9 +31,5 @@ namespace WEB_API.Interface
             var city = await _dataContext.Cities.FindAsync(cityId);
             _dataContext.Remove(city);
         }
-        public async Task<bool> SaveAsync()
-        {
-           return await _dataContext.SaveChangesAsync() >0;
-        }
     }
 }
