@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEB_API.Context;
-using WEB_API.Repos;
+using WEB_API.Interface;
 
 namespace WEB_API
 {
