@@ -12,8 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEB_API.Context;
+using WEB_API.Helper;
 using WEB_API.Interface;
 using WEB_API.Repos;
+using AutoMapper;
 
 namespace WEB_API
 {
@@ -31,6 +33,7 @@ namespace WEB_API
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
