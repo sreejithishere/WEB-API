@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEB_API.Context;
+using WEB_API.Dtos;
 using WEB_API.Models;
 
 namespace WEB_API.Interface
@@ -11,20 +13,23 @@ namespace WEB_API.Interface
     public class CityRepository:ICityRepository
     {
         private readonly DataContext _dataContext;
-        public CityRepository(DataContext dc)
+        private readonly IMapper _mapper;
+        public CityRepository(DataContext dc, IMapper mapper)
         {
             _dataContext = dc;
+            _mapper = mapper;
         }
-       public async Task<IEnumerable<City>> GetCitiesAsync()
+       public async Task<IEnumerable<CityDto>> GetCitiesAsync()
         {
-            return await _dataContext.Cities.ToListAsync();
+            var city= await _dataContext.Cities.ToListAsync();
+            var cityDto =  _mapper.Map <IEnumerable<CityDto>>(city);
+            return cityDto;
+        }
 
-        }
-        public async Task AddCityAsync(City city)
+        public async Task AddCityAsync(CityDto cityDto)
         {
+            var city = _mapper.Map<City>(cityDto);
             await _dataContext.AddAsync(city);
-
-
         }
         public async Task DeleteCityAsync(int cityId)
         {

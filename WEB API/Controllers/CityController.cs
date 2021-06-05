@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using WEB_API.Models;
 using WEB_API.Interface;
+using WEB_API.Dtos;
 
 namespace WEB_API.Controllers
 {
@@ -33,9 +34,10 @@ namespace WEB_API.Controllers
         //}
 
         [HttpPost("addCity")]
-        public async Task<IActionResult> AddCities(City city)
+        public async Task<IActionResult> AddCities(CityDto cityDto)
         {
-            await _uow.cityRepository.AddCityAsync(city);
+ 
+            await _uow.cityRepository.AddCityAsync(cityDto);
             await _uow.SaveAsync();
             return Ok();
         }

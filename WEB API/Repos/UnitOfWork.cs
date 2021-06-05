@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,11 +11,13 @@ namespace WEB_API.Repos
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dc;
-        public UnitOfWork(DataContext dc)
+        private readonly IMapper _mapper;
+        public UnitOfWork(DataContext dc,IMapper mapper)
         {
             _dc = dc;
+            _mapper = mapper;
         }
-        public ICityRepository cityRepository => new CityRepository(_dc);
+        public ICityRepository cityRepository => new CityRepository(_dc,_mapper);
 
         public async Task<bool> SaveAsync()
         {
