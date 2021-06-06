@@ -12,5 +12,7 @@ namespace WEB_API.Interface
         Task<IEnumerable<CityDto>> GetCitiesAsync();
         Task AddCityAsync(CityDto cityDto);
         Task DeleteCityAsync(int cityId);
+        Task<City> FindAsync(int id);
+        Task UpdateCityAsync(City city,CityDto cityDto);
     }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using WEB_API.Models;
 using WEB_API.Interface;
 using WEB_API.Dtos;
+using System;
 
 namespace WEB_API.Controllers
 {
@@ -40,6 +41,14 @@ namespace WEB_API.Controllers
             await _uow.cityRepository.AddCityAsync(cityDto);
             await _uow.SaveAsync();
             return Ok();
+        }
+        [HttpPut("updateCity/{id}")]
+        public async Task<IActionResult> UpdateCity(int id,CityDto cityDto)
+        {
+           var cityFromDB=  await _uow.cityRepository.FindAsync(id);
+           await _uow.cityRepository.UpdateCityAsync(cityFromDB,cityDto);
+           await _uow.SaveAsync();
+           return Ok();
         }
 
         [HttpDelete("deleteCity/{id}")]
