@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WEB_API.Controllers
 {
-    [Authorize]
+
     public class CityController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -18,6 +18,7 @@ namespace WEB_API.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles ="User")]
         [AllowAnonymous]
         public async Task<IActionResult> Get()
         {

@@ -46,6 +46,7 @@ namespace WEB_API.Controllers
             var claims = new Claim[] {
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                //new Claim(ClaimTypes.Role,"User")
             };
 
             var signingCredentials = new SigningCredentials(
