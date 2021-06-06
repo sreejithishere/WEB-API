@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WEB_API.Dtos;
+using WEB_API.Models;
 
 namespace WEB_API.Interface
 {
-    public interface IUnitOfWork
+    public interface IUser
     {
-        ICityRepository cityRepository { get; }
-        IUser user { get; }
-        Task<bool> SaveAsync();
+        Task<User> Authenticate(LoginReqDto loginReqDto);
     }
 }

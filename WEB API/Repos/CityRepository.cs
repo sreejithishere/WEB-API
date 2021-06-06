@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WEB_API.Context;
 using WEB_API.Dtos;
@@ -19,6 +18,7 @@ namespace WEB_API.Interface
             _dataContext = dc;
             _mapper = mapper;
         }
+
        public async Task<IEnumerable<CityDto>> GetCitiesAsync()
         {
             var city= await _dataContext.Cities.ToListAsync();
