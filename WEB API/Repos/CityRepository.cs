@@ -36,5 +36,17 @@ namespace WEB_API.Interface
             var city = await _dataContext.Cities.FindAsync(cityId);
             _dataContext.Remove(city);
         }
+
+        public async Task<City> FindAsync(int id)
+        {
+            return await _dataContext.Cities.FindAsync(id);
+        }
+        public async Task UpdateCityAsync(City city, CityDto cityDto)
+        {
+            city.LastUpdatedOn = DateTime.Now;
+            city.LastUpdatedBy = "Sree";
+            var cityM =   _mapper.Map(cityDto, city);
+            await Task.CompletedTask;        
+        }
     }
 }

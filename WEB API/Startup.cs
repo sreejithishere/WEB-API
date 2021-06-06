@@ -16,6 +16,7 @@ using WEB_API.Helper;
 using WEB_API.Interface;
 using WEB_API.Repos;
 using AutoMapper;
+using WEB_API.Extensions;
 
 namespace WEB_API
 {
@@ -40,11 +41,7 @@ namespace WEB_API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            app.ConfigureExceptionHandler(env);
             app.UseHttpsRedirection();
 
             app.UseRouting();
