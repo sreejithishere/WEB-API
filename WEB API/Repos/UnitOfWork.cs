@@ -18,6 +18,7 @@ namespace WEB_API.Repos
             _mapper = mapper;
         }
         public ICityRepository cityRepository => new CityRepository(_dc,_mapper);
+        public IUser user => new UserRepository(_dc, _mapper);
 
         public async Task<bool> SaveAsync()
         {

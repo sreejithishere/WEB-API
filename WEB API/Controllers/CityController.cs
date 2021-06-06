@@ -4,12 +4,12 @@ using WEB_API.Models;
 using WEB_API.Interface;
 using WEB_API.Dtos;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WEB_API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CityController : ControllerBase
+
+    public class CityController : BaseController
     {
         private readonly IUnitOfWork _uow;
         public CityController(IUnitOfWork uow)
@@ -18,6 +18,8 @@ namespace WEB_API.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles ="User")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             var cities = await _uow.cityRepository.GetCitiesAsync();
