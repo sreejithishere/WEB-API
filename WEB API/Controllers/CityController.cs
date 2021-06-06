@@ -20,7 +20,6 @@ namespace WEB_API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            throw new UnauthorizedAccessException();
             var cities = await _uow.cityRepository.GetCitiesAsync();
             return Ok(cities);
         }
