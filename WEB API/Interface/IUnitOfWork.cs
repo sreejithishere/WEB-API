@@ -8,7 +8,7 @@ namespace WEB_API.Interface
     public interface IUnitOfWork
     {
         ICityRepository cityRepository { get; }
-        IUser user { get; }
+        IUser userRepository { get; }
         Task<bool> SaveAsync();
     }
 }
