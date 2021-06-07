@@ -9,6 +9,9 @@ namespace WEB_API.Interface
 {
     public interface IUser
     {
-        Task<User> Authenticate(LoginReqDto loginReqDto);
+        Task<User> Authenticate(string userName, string password);
+        void Register(string userName, string password);
+
+        Task<bool> UserAlreadyExists(string userName);
     }
 }

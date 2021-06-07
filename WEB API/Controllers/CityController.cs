@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WEB_API.Controllers
 {
-
+    [Authorize]
     public class CityController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -44,6 +44,7 @@ namespace WEB_API.Controllers
             await _uow.SaveAsync();
             return Ok();
         }
+
         [HttpPut("updateCity/{id}")]
         public async Task<IActionResult> UpdateCity(int id,CityDto cityDto)
         {
